@@ -34,5 +34,6 @@ function toggleColorMode() {
     <main class="flex flex-1">
       <slot />
     </main>
+    <Toaster />
   </div>
 </template>

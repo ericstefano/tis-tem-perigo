@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
+import { toast } from 'vue-sonner'
 
 async function goToAlerts() {
   await navigateTo('/alerts')
@@ -16,6 +17,13 @@ const openweatherkey = useStorage('openweatherkey', '')
 const { data } = useFetch<any>('https://api.openweathermap.org/data/2.5/weather', {
   key: 'weather',
   immediate: false,
+  retry: false,
+  onRequestError({ error }) {
+    toast.error(`Falha ao requisitar a OpenWeatherAPI.\n${error.message}`)
+  },
+  onResponseError({ response }) {
+    toast.error(`Falha ao requisitar a OpenWeatherAPI.\n${response._data.message}`)
+  },
   query: {
     lon: longitude,
     lat: latitude,
