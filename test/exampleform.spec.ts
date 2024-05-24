@@ -6,14 +6,14 @@ await setup({
   dev: true,
   server: true,
   browserOptions: {
-    type: 'chromium', // webkit doesnt work
+    type: 'chromium',
   },
 })
 
 describe('e2e example suite', async () => {
   it('e2e example test', async () => {
-    const page = await createPage('/form', {})
-    const text = await page.getByRole('heading', { name: 'Comece agora', level: 3 }).textContent()
+    const page = await createPage('/', {})
+    const text = await page.getByRole('button', { name: 'Ver alertas' }).textContent()
     expect(text).toContain('Comece agora')
     await page.close()
   })
