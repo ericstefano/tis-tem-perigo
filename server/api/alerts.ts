@@ -19,8 +19,8 @@ export default defineEventHandler(async (event) => {
       format: 'jsonv2',
     },
     headers: {
-      'User-Agent': headers['User-Agent'],
-      'referer': headers.referer,
+      'User-Agent': headers['User-Agent']!,
+      'referer': headers.referer!,
     },
   })
 
