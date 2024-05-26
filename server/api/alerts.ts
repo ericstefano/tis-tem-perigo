@@ -18,6 +18,10 @@ export default defineEventHandler(async (event) => {
       lon: longitude,
       format: 'jsonv2',
     },
+    headers: {
+      'User-Agent': headers['User-Agent'],
+      'referer': headers.referer,
+    },
   })
 
   const state = geocode.address.state
@@ -35,10 +39,6 @@ export default defineEventHandler(async (event) => {
       lat: latitude,
       lon: longitude,
       units: 'metric',
-    },
-    headers: {
-      'User-Agent': headers['User-Agent'],
-      'referer': headers.referer,
     },
   })
 
