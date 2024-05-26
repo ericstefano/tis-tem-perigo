@@ -1,7 +1,6 @@
 export default defineEventHandler(async (event) => {
   const { latitude, longitude, key } = getQuery(event)
   const headers = getHeaders(event)
-  console.log(headers)
   interface GeocodeResponse {
     address: {
       state: string
