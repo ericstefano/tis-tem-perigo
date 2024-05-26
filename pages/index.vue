@@ -7,7 +7,7 @@ function reloadPage() {
 }
 const geolocation = useGeolocation({ enableHighAccuracy: true })
 const weatherapikey = useStorage('weatherapikey', '')
-const data = ref(null)
+const data = ref<Awaited<ReturnType<typeof fetchAlerts>> | null>(null)
 
 async function fetchAlerts({ key, longitude, latitude }: { key: string, longitude: string | number, latitude: string | number }) {
   return $fetch('/api/alerts', {
@@ -66,14 +66,32 @@ watch(geolocation.coords, async () => {
       <SheetContent side="bottom" :close="false" class="max-w-screen-sm m-auto border-r border-l rounded-md">
         <div class="flex flex-col gap-4 justify-between w-full">
           <Card
-            v-for="alert in data?.alerts" :key="alert.id" class="py-1 px-4 text-lg text-background truncate"
+            v-for="alert in data?.alerts" :key="alert.id" class="py-1 px-3 flex justify-between items-center"
             :class="{
               'bg-yellow-600': alert.severidade.toLowerCase().trim() === 'perigo potencial',
               'bg-orange-600': alert.severidade.toLowerCase().trim() === 'perigo',
               'bg-red-600': alert.severidade.toLowerCase().trim() === 'grande perigo',
             }"
           >
-            {{ alert.severidade }} - {{ alert.descricao }}
+            <p class="truncate text-lg text-background ">
+              {{ alert.severidade }} - {{ alert.descricao }}
+            </p>
+            <div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger as-child>
+                    <Button
+                      variant="ghost" class="hover:bg-transparent" size="icon"
+                    >
+                      <Icon class="text-background h-6 w-6" name="lucide:circle-alert" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent class="bg-primary text-background text-lg px-2 py-1 rounded-lg truncate max-w-sm lg:max-w-xl">
+                    {{ alert.riscos }}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
           </Card>
         </div>
       </SheetContent>

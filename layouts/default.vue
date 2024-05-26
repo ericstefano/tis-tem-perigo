@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
 
-
 const isConfigOpen = ref(false)
 const colorMode = useColorMode()
 const isDarkMode = computed(() => colorMode.preference === 'dark')
@@ -16,7 +15,7 @@ function toggleColorMode() {
     <header class="mb-8">
       <nav>
         <ul class="flex justify-between items-center">
-          <img src="../assets/images/logo.jpeg" class="h-12 w-12" :class="{ invert: isDarkMode }">
+          <img src="../public/logo.png" class="h-12 w-12" :class="{ invert: isDarkMode }">
           <div class="flex items-center gap-1">
             <li>
               <Button variant="ghost" size="icon" @click="toggleColorMode">

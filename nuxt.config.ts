@@ -1,5 +1,5 @@
 import { pwa } from './config/pwa'
-import { appDescription } from './constants/index'
+import { APP_DESCRIPTION } from './constants/index'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
       ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: appDescription },
+        { name: 'description', content: APP_DESCRIPTION },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ],
     },

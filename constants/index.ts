@@ -1,3 +1,2 @@
-export const appName = 'Vitesse for Nuxt 3'
-
-export const appDescription = 'Vitesse for Nuxt 3'
+export const APP_NAME = 'Tem Perigo!?'
+export const APP_DESCRIPTION = 'Aplicativo de alertas metereológicos'
