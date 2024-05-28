@@ -26,7 +26,7 @@ function toggleColorMode() {
               <Sheet :open="isConfigOpen" @update:open="isConfigOpen = !isConfigOpen">
                 <SheetTrigger :as-child="true">
                   <Button variant="ghost" size="icon">
-                    <Icon size="1.25rem" :name="isConfigOpen ? 'lucide:x' : 'lucide:settings-2' " />
+                    <Icon aria-hidden="false" aria-label="settings" size="1.25rem" :name="isConfigOpen ? 'lucide:x' : 'lucide:settings-2' " />
                   </Button>
                 </SheetTrigger>
                 <SheetContent>
@@ -38,7 +38,7 @@ function toggleColorMode() {
                       Gerais
                     </p>
                     <div class="gap-2 flex flex-col">
-                      <Label>Chave da WeatherAPI</Label>
+                      <Label>Chave da OpenWeatherAPI</Label>
                       <PasswordInput v-model="weatherapikey" />
                     </div>
                   </div>
